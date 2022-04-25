@@ -16,9 +16,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     authenticationBloc.add(GetUserData());
-    return WillPopScope(
-        onWillPop: () async => false,
-        child: BlocBuilder<AuthenticationBloc, AuthenticationState>(
+    return BlocBuilder<AuthenticationBloc, AuthenticationState>(
             bloc: authenticationBloc,
             builder: (BuildContext context, AuthenticationState state) {
               if (state is SetUserData) {
@@ -110,6 +108,6 @@ class HomeScreen extends StatelessWidget {
                   child: CircularProgressIndicator(),
                 ),
               );
-            }));
+            });
   }
 }
