@@ -18,30 +18,7 @@ class HomeScreen extends StatelessWidget {
     return BlocBuilder<AuthenticationBloc, AuthenticationState>(
             bloc: authenticationBloc,
             builder: (BuildContext context, AuthenticationState state) {
-              if (state is SetUserData) {
-                return Scaffold(
-                  appBar: AppBar(
-                    centerTitle: true,
-                    title: Text(
-                      string_constants.app_bar_title,
-                      style: Theme.of(context).textTheme.bodyText1,
-                    ),
-                    actions: [
-                      IconButton(
-                          icon: Icon(Icons.logout),
-                          onPressed: () {
-                            authenticationBloc.add(UserLogOut());
-                          }),
-                    ],
-                  ),
-                  body: Center(
-                    child: Text('/home'),
-                  ),
-                  drawer: Drawer(
-                    child: ListView(
-                      padding: EdgeInsets.zero,
-                      children: <Widget>[
-                        DrawerHeader(
+              var drawer_children = <Widget>[DrawerHeader(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -83,21 +60,45 @@ class HomeScreen extends StatelessWidget {
                           decoration: BoxDecoration(
                             color: Theme.of(context).dividerColor,
                           ),
-                        ),
-                        ListTile(
+                        )];
+              if (state is SetUserData) {
+                drawer_children.add(ListTile(
                           title: Text(
                               '${state.currentUserData.data.firstName} ${state.currentUserData.data.lastName}',
                               style: Theme.of(context).textTheme.bodyText2),
-                        ),
-                        ListTile(
+                        ));
+                drawer_children.add(ListTile(
                           title: Text(state.currentUserData.data.email,
                               style: Theme.of(context).textTheme.bodyText2),
-                        ),
-                        ListTile(
+                        ));
+                drawer_children.add(ListTile(
                           title: Text(state.currentUserData.ad.company,
                               style: Theme.of(context).textTheme.bodyText2),
-                        ),
-                      ],
+                        ));
+              }
+              if (state is SetUserData) {
+                return Scaffold(
+                  appBar: AppBar(
+                    centerTitle: true,
+                    title: Text(
+                      string_constants.app_bar_title,
+                      style: Theme.of(context).textTheme.bodyText1,
+                    ),
+                    actions: [
+                      IconButton(
+                          icon: Icon(Icons.logout),
+                          onPressed: () {
+                            authenticationBloc.add(UserLogOut());
+                          }),
+                    ],
+                  ),
+                  body: Center(
+                    child: Text('/home'),
+                  ),
+                  drawer: Drawer(
+                    child: ListView(
+                      padding: EdgeInsets.zero,
+                      children: drawer_children,
                     ),
                   ),
                 );
