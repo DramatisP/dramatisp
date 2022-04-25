@@ -10,36 +10,20 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  AuthenticationBloc authenticationBloc;
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: ColorConstants.secondaryAppColor,
-        body: BlocListener<AuthenticationBloc, AuthenticationState>(
-          bloc: authenticationBloc,
-          listener: (BuildContext context, AuthenticationState state) {
-            if (state is AppAutheticated) {
-              Navigator.pushNamed(context, '/home');
-            }
-            if (state is AuthenticationStart) {
-              Navigator.pushNamed(context, '/auth');
-            }
-            if (state is UserLogoutState) {
-              Navigator.pushNamed(context, '/auth');
-            }
-          },
-          child: BlocBuilder<AuthenticationBloc, AuthenticationState>(
-              bloc: authenticationBloc,
-              builder: (BuildContext context, AuthenticationState state) {
-                return Center(child: Image.asset(AllImages().logo));
-              }),
-        ));
+      backgroundColor: ColorConstants.secondaryAppColor,
+      body: Center(child: Image.asset(AllImages().logo))
+    );
   }
 
   @override
   void initState() {
-    authenticationBloc = AuthenticationBlocController().authenticationBloc;
-    authenticationBloc.add(AppLoadedup());
     super.initState();
+    Future.delayed(const Duration(seconds: 3)).then((val) {
+      Navigator.pushNamed(context, '/home');
+    });
   }
 }
