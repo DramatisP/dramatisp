@@ -33,7 +33,7 @@ class HomeScreen extends StatelessWidget {
                                         color: Colors.white),
                                     child: CachedImage(
                                       imageUrl:
-                                          state.currentUserData.data.avatar,
+                                          (state is SetUserData) ? state.currentUserData.data.avatar : "https://picsum.photos/200",
                                       fit: BoxFit.fitWidth,
                                       errorWidget: Image.network(
                                         AllImages().kDefaultImage,
@@ -76,8 +76,7 @@ class HomeScreen extends StatelessWidget {
                               style: Theme.of(context).textTheme.bodyText2),
                         ));
               }
-              if (state is SetUserData) {
-                return Scaffold(
+              return Scaffold(
                   appBar: AppBar(
                     centerTitle: true,
                     title: Text(
@@ -102,12 +101,6 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                 );
-              }
-              return Scaffold(
-                body: Center(
-                  child: CircularProgressIndicator(),
-                ),
-              );
             });
   }
 }
