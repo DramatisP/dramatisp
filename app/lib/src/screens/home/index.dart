@@ -15,36 +15,10 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    authenticationBloc.add(GetUserData());
-    return WillPopScope(
-        onWillPop: () async => false,
-        child: BlocBuilder<AuthenticationBloc, AuthenticationState>(
+    return BlocBuilder<AuthenticationBloc, AuthenticationState>(
             bloc: authenticationBloc,
             builder: (BuildContext context, AuthenticationState state) {
-              if (state is SetUserData) {
-                return Scaffold(
-                  appBar: AppBar(
-                    centerTitle: true,
-                    title: Text(
-                      string_constants.app_bar_title,
-                      style: Theme.of(context).textTheme.bodyText1,
-                    ),
-                    actions: [
-                      IconButton(
-                          icon: Icon(Icons.logout),
-                          onPressed: () {
-                            authenticationBloc.add(UserLogOut());
-                          }),
-                    ],
-                  ),
-                  body: Center(
-                    child: Text('/home'),
-                  ),
-                  drawer: Drawer(
-                    child: ListView(
-                      padding: EdgeInsets.zero,
-                      children: <Widget>[
-                        DrawerHeader(
+              var drawer_children = <Widget>[DrawerHeader(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -59,7 +33,7 @@ class HomeScreen extends StatelessWidget {
                                         color: Colors.white),
                                     child: CachedImage(
                                       imageUrl:
-                                          state.currentUserData.data.avatar,
+                                          (state is SetUserData) ? state.currentUserData.data.avatar : "https://picsum.photos/200",
                                       fit: BoxFit.fitWidth,
                                       errorWidget: Image.network(
                                         AllImages().kDefaultImage,
@@ -86,30 +60,47 @@ class HomeScreen extends StatelessWidget {
                           decoration: BoxDecoration(
                             color: Theme.of(context).dividerColor,
                           ),
-                        ),
-                        ListTile(
+                        )];
+              if (state is SetUserData) {
+                drawer_children.add(ListTile(
                           title: Text(
                               '${state.currentUserData.data.firstName} ${state.currentUserData.data.lastName}',
                               style: Theme.of(context).textTheme.bodyText2),
-                        ),
-                        ListTile(
+                        ));
+                drawer_children.add(ListTile(
                           title: Text(state.currentUserData.data.email,
                               style: Theme.of(context).textTheme.bodyText2),
-                        ),
-                        ListTile(
+                        ));
+                drawer_children.add(ListTile(
                           title: Text(state.currentUserData.ad.company,
                               style: Theme.of(context).textTheme.bodyText2),
-                        ),
-                      ],
+                        ));
+              }
+              return Scaffold(
+                  appBar: AppBar(
+                    centerTitle: true,
+                    title: Text(
+                      string_constants.app_bar_title,
+                      style: Theme.of(context).textTheme.bodyText1,
+                    ),
+                    actions: [
+                      IconButton(
+                          icon: Icon(Icons.logout),
+                          onPressed: () {
+                            authenticationBloc.add(UserLogOut());
+                          }),
+                    ],
+                  ),
+                  body: Center(
+                    child: Text('/home'),
+                  ),
+                  drawer: Drawer(
+                    child: ListView(
+                      padding: EdgeInsets.zero,
+                      children: drawer_children,
                     ),
                   ),
                 );
-              }
-              return Scaffold(
-                body: Center(
-                  child: CircularProgressIndicator(),
-                ),
-              );
-            }));
+            });
   }
 }
