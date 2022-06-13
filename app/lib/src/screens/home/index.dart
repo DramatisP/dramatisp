@@ -75,6 +75,11 @@ class HomeScreen extends StatelessWidget {
                           title: Text(state.currentUserData.ad.company,
                               style: Theme.of(context).textTheme.bodyText2),
                         ));
+                drawer_children.add(ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/characters');
+                  },
+                  child: const Text('Characters')));
               }
               return Scaffold(
                   appBar: AppBar(
