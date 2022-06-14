@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'character.dart';
+import 'character_model.dart';
 
 class CharacterCard extends StatelessWidget {
   final Character character;
