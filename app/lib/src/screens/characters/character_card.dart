@@ -8,6 +8,29 @@ class CharacterCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text("Hello CharacterCard");
+    return Container(
+      height:100,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Container(
+            width: 80,
+            height: 80,
+            decoration: BoxDecoration(
+              color: Colors.grey,
+              shape: BoxShape.circle,
+            ),
+          ),
+          Column(
+            children: [
+              Text(character.name),
+              Text(character.location),
+              Text(character.archetype),
+            ],
+          ),
+        ],
+
+      ),
+    );
   }
 }
