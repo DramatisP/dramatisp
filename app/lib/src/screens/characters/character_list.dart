@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart'
+import 'package:flutter/material.dart';
 
-import 'character_card.dart'
-impprt 'character_model.dart'
+import 'character_card.dart';
+import 'character_model.dart';
 
 class CharacterList extends StatelessWidget {
   final List<Character> characters;
