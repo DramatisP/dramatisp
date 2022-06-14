@@ -11,7 +11,7 @@ class CharacterScreen extends StatelessWidget {
       body: Center(
         child: Text("Character List")
       )
-    )
+    );
   }
 
 }
