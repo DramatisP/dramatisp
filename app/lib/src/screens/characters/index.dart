@@ -1,6 +1,17 @@
 import 'package:flutter/material.dart';
 
+import 'character_model.dart';
+import 'character_list.dart';
+
 class CharacterScreen extends StatelessWidget {
+  List getCharacters() {
+    return [
+      Character("Daske", "Magierturm", "Magier"),
+      Character("Namdosch", "Erdhöhle", "Geode"),
+      Character("Olainen", "Wolfsrudel", "Nivese"),
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -9,8 +20,8 @@ class CharacterScreen extends StatelessWidget {
         title: Text("Characters")
       ),
       body: Center(
-        child: Text("Character List")
-      )
+        child: CharacterList(getCharacters()),
+      ),
     );
   }
 
