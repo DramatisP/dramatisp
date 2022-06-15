@@ -21,11 +21,39 @@ class CharacterScreen extends StatelessWidget {
       ),
       body: Container(
         child: Center(
-          //child: CharacterList(getCharacters()),
-          child: Text("/characters")
+          child: CharacterList2(getCharacters()),
         ), 
       ),
     );
   }
 
+}
+
+class CharacterList2 extends StatelessWidget {
+  List characters;
+  CharacterList2(this.characters);
+
+  @override
+  Widget build(BuildContext context) {
+    return _buildList(context);
+  }
+
+  ListView _buildList(BuildContext context) {
+    return ListView.builder(
+      itemCount: characters.length,
+      itemBuilder: (context, int) {
+        return Container(
+          height: 100,
+          child: Center(
+            child: Column(
+              children: [
+                Text(characters[int][0]),
+                Text(characters[int][1]),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
 }
