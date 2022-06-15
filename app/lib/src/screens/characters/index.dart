@@ -21,7 +21,8 @@ class CharacterScreen extends StatelessWidget {
       ),
       body: Container(
         child: Center(
-          child: CharacterList(getCharacters()),
+          //child: CharacterList(getCharacters()),
+          child: Text("/characters")
         ), 
       ),
     );
