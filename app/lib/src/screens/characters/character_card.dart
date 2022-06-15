@@ -16,10 +16,17 @@ class CharacterCard extends StatelessWidget {
           Container(
             width: 80,
             height: 80,
-            decoration: BoxDecoration(
-              color: Colors.grey,
-              shape: BoxShape.circle,
+            child: Icon(Icons.message,
+              size: 50, 
+              color: Colors.red,
             ),
+          ),
+          Column(
+            children: [
+              Text(character.name),
+              Text(character.location),
+              Text(character.archetype),
+            ],
           ),
           Column(
             children: [
