@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'character_model.dart';
 import 'character_list.dart';
+import 'character_card.dart';
 
 class CharacterScreen extends StatelessWidget {
   List getCharacters() {
@@ -42,18 +43,7 @@ class CharacterList2 extends StatelessWidget {
     return ListView.builder(
       itemCount: characters.length,
       itemBuilder: (context, int) {
-        return Container(
-          height: 100,
-          child: Center(
-            child: Column(
-              children: [
-                Text(characters[int].name),
-                Text(characters[int].location),
-                Text(characters[int].archetype),
-              ],
-            ),
-          ),
-        );
+        return CharacterCard(characters[int]);
       },
     );
   }
