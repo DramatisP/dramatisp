@@ -47,8 +47,9 @@ class CharacterList2 extends StatelessWidget {
           child: Center(
             child: Column(
               children: [
-                Text(characters[int][0]),
-                Text(characters[int][1]),
+                Text(characters[int].name),
+                Text(characters[int].location),
+                Text(characters[int].archetype),
               ],
             ),
           ),
