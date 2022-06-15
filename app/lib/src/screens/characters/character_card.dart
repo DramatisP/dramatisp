@@ -13,14 +13,6 @@ class CharacterCard extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Container(
-            width: 80,
-            height: 80,
-            child: Icon(Icons.message,
-              size: 50, 
-              color: Colors.red,
-            ),
-          ),
           Column(
             children: [
               Text(character.name),
