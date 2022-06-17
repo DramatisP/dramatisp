@@ -31,7 +31,7 @@ class CharacterScreen extends StatelessWidget {
 }
 
 class CharacterList2 extends StatelessWidget {
-  List characters;
+  final List characters;
   CharacterList2(this.characters);
 
   @override
