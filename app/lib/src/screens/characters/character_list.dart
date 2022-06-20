@@ -4,7 +4,7 @@ import 'character_card.dart';
 import 'character_model.dart';
 
 class CharacterList extends StatelessWidget {
-  final List<Character> characters;
+  final List characters;
   CharacterList(this.characters);
 
   @override
