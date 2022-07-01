@@ -33,14 +33,14 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: ColorConstants.secondaryAppColor,
+        backgroundColor: Colors.white,
         body: BlocProvider(
             create: (_) => _splashScreenBloc,
             child: Center(
                 child: BlocConsumer<SplashScreenBloc, SplashScreenState>(
                     listener: (context, state) {
                       if (state is Loaded) {
-                        Navigator.pushNamed(context, '/home');
+                        Navigator.pushReplacementNamed(context, '/home');
                       }
                     },
                     builder: (context, state) {
@@ -56,6 +56,7 @@ class _SplashScreenState extends State<SplashScreen> {
                           ),
                         ));
                         widgets.add(LinearProgressIndicator(
+                          color: ColorConstants.secondaryAppColor,
                           backgroundColor: Colors.white,
                         ));
                       }
