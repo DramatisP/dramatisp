@@ -92,7 +92,7 @@ class HomeScreen extends StatelessWidget {
                     ],
                   ),
                   body: Center(
-                    child: Text('/home'),
+                    child: Text('/home Screen '),
                   ),
                   drawer: Drawer(
                     child: ListView(

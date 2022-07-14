@@ -31,7 +31,7 @@ class AuthenticationBloc
       await Future.delayed(Duration(milliseconds: 500)); // a simulated delay
       final SharedPreferences sharedPreferences = await prefs;
       if (sharedPreferences.getString('authtoken') != null) {
-        emit(AppAutheticated());
+        emit(AppAuthenticated());
       } else {
         emit(AuthenticationStart());
       }
@@ -53,7 +53,7 @@ class AuthenticationBloc
         final currentUser = Token.fromJson(data);
         if (currentUser != null) {
           sharedPreferences.setString('authtoken', currentUser.token);
-          emit(AppAutheticated());
+          emit(AppAuthenticated());
         } else {
           emit(AuthenticationNotAuthenticated());
         }
@@ -80,7 +80,7 @@ class AuthenticationBloc
         if (currentUser != null) {
           sharedPreferences.setString('authtoken', currentUser.token);
           sharedPreferences.setInt('userId', currentUser.id);
-          emit(AppAutheticated());
+          emit(AppAuthenticated());
         } else {
           emit(AuthenticationNotAuthenticated());
         }
