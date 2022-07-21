@@ -20,10 +20,18 @@ class CharacterScreen extends StatelessWidget {
         centerTitle: true,
         title: Text("Characters")
       ),
-      body: Container(
-        child: Center(
-          child: CharacterList(getCharacters()),
-        ), 
+      body: Padding(
+        padding: const EdgeInsets.all(5.0),
+        child: Container(
+          child: Center(
+            child: CharacterList(getCharacters()),
+          ),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {
+        },
       ),
     );
   }
